@@ -80,6 +80,12 @@ def login_is_required(function):
 
     return wrapper
 
+@app.route("/")
+def hello_world():
+    """Example Hello World route."""
+    name = os.environ.get("NAME", "World")
+    return f"Hello {name}!"
+
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
