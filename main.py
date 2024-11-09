@@ -68,7 +68,7 @@ flow = Flow.from_client_secrets_file(
     client_secrets_file=client_secret_file,
     scopes=["https://www.googleapis.com/auth/userinfo.profile", "https://www.googleapis.com/auth/userinfo.email", 
             "https://www.googleapis.com/auth/gmail.modify", "https://mail.google.com/","openid"],
-    redirect_uri="http://localhost:8080/callback"
+    redirect_uri="https://simpleflask-389293639960.us-central1.run.app/callback"
                                      )
 
 def login_is_required(function):
