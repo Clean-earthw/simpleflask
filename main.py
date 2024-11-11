@@ -25,8 +25,10 @@ if os.path.exists('token.json'):
 load_dotenv()
 GOOGLE_CLIENT_ID = os.environ.get('CLIENT_ID')
 
+os.environ["GEMINI_API_KEY"] = "AIzaSyDP-WGwWX4SY2uLTaKAivWwuXzX0LqSui0"
+
 genai.configure(
-    api_key=os.getenv("API_KEY"),
+    api_key=os.getenv("GEMINI_API_KEY"),
     transport="rest",
     client_options=creds
     )
