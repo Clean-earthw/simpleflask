@@ -131,6 +131,11 @@ def credentials_to_dict(credentials):
           'client_secret': credentials.client_secret,
           'scopes': credentials.scopes}
 
+@app.after_request
+def after_request(response):
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    return response
+        
 @app.route("/callback", methods=['GET', 'POST'])
 def callback():
     flow.fetch_token(authorization_response=request.url)
