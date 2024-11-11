@@ -46,6 +46,15 @@ config = {
   'top_p': 0.9,
   'max_output_tokens': 500
 }
+
+generation_config = {
+  "temperature": 1,
+  "top_p": 0.95,
+  "top_k": 64,
+  "max_output_tokens": 8192,
+  "response_mime_type": "text/plain",
+}
+
 safety_settings = [
   {
     "category": "HARM_CATEGORY_HARASSMENT",
@@ -213,18 +222,13 @@ def tuned_gemini_query():
 
     response = model.generate_content(
         query,
-        generation_config={
-            "max_output_tokens":2048,
-            "temperature":0.9,
-            "top_p":1
-         },
-         stream=True
+        generation_config=generation_config
     )
 
-    # for response in responses:
-    #     output = response.candidates[0].content.parts[0].text
+    for response in responses:
+        output = response.candidates[0].content.parts[0].text
 
-    return jsonify({'response':response})
+    return jsonify({'response':output})
     
 @app.route("/gemini_query",methods=['POST'])
 def gemini_query():
@@ -238,12 +242,7 @@ def gemini_query():
 
     responses = model.generate_content(
         query,
-        generation_config={
-            "max_output_tokens":2048,
-            "temperature":0.9,
-            "top_p":1
-         },
-         stream=True
+        generation_config=generation_config
     )
 
     for response in responses:
