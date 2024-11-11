@@ -28,10 +28,7 @@ GOOGLE_CLIENT_ID = os.environ.get('CLIENT_ID')
 os.environ["GEMINI_API_KEY"] = "AIzaSyDP-WGwWX4SY2uLTaKAivWwuXzX0LqSui0"
 
 genai.configure(
-    api_key=os.getenv("GEMINI_API_KEY"),
-    transport="rest",
-    #client_options=creds
-    )
+    api_key=os.getenv("GEMINI_API_KEY"))
 
 app = Flask(__name__)
 app.secret_key = 'XT5PUdwqegbndhgfsbdvH5m79D'
