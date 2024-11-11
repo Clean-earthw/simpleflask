@@ -33,6 +33,7 @@ genai.configure(
 app = Flask(__name__)
 app.secret_key = 'XT5PUdwqegbndhgfsbdvH5m79D'
 CORS(app)
+app.config['PROPAGATE_EXCEPTIONS'] = True
 app.config['DEBUG'] = os.environ.get('FLASK_DEBUG')
 
 os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
