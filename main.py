@@ -202,7 +202,7 @@ def tuned_gemini_query():
     query = data.get('query')
 
     model = genai.GenerativeModel(
-        model_name="tunedModels/geminidetectphish-nsw7x3zv20o2",
+        model_name="tunedModels/phish-ei0qk5k69u5o",
         system_instruction="You are a phishing email detection model. You are given the following email and asked to determine if it is a 'Phishing' or a 'Safe' email. Please only give a one word response. The email is as follows:",
     )
 
