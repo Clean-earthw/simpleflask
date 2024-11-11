@@ -130,11 +130,6 @@ def credentials_to_dict(credentials):
           'client_id': credentials.client_id,
           'client_secret': credentials.client_secret,
           'scopes': credentials.scopes}
-
-@current_app.before_request
-def basic_authentication():
-    if request.method.lower() == 'options':
-        return Response()
         
 @app.route("/callback", methods=['GET', 'POST'])
 def callback():
