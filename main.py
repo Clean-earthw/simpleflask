@@ -131,10 +131,10 @@ def credentials_to_dict(credentials):
           'client_secret': credentials.client_secret,
           'scopes': credentials.scopes}
 
-@app.after_request
-def after_request(response):
-    response.headers['Access-Control-Allow-Origin'] = '*'
-    return response
+@current_app.before_request
+def basic_authentication():
+    if request.method.lower() == 'options':
+        return Response()
         
 @app.route("/callback", methods=['GET', 'POST'])
 def callback():
