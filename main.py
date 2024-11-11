@@ -11,18 +11,25 @@ import google.auth.transport.requests
 from googleapiclient.discovery import build
 from google.auth.transport.requests import Request
 from google_auth_oauthlib.flow import InstalledAppFlow
+from google.oauth2.credentials import Credentials
 from pip._vendor import cachecontrol
 import requests
 import google.generativeai as genai
 from dotenv import load_dotenv
 
-# creds = load_creds()
+GENAI_SCOPE = ['https://www.googleapis.com/auth/generative-language.retriever']
+
+if os.path.exists('token.json'):
+        creds = Credentials.from_authorized_user_file('token.json', GENAI_SCOPE)
 
 load_dotenv()
 GOOGLE_CLIENT_ID = os.environ.get('CLIENT_ID')
 
 genai.configure(
-    api_key=os.getenv("API_KEY"))
+    api_key=os.getenv("API_KEY"),
+    transport="rest",
+    client_options=creds
+    )
 
 app = Flask(__name__)
 app.secret_key = 'XT5PUdwqegbndhgfsbdvH5m79D'
@@ -70,6 +77,7 @@ flow = Flow.from_client_secrets_file(
             "https://www.googleapis.com/auth/gmail.modify", "https://mail.google.com/","openid"],
     redirect_uri="https://simpleflask-389293639960.us-central1.run.app/callback"
                                      )
+
 
 def login_is_required(function):
     def wrapper(*args, **kwargs):
@@ -256,3 +264,4 @@ def decode():
 
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
+
