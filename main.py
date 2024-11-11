@@ -227,7 +227,7 @@ def gemini_query():
     query = data.get('query')
 
     model = genai.GenerativeModel(
-        "models/gemini-1.5-flash",
+        model_name="gemini-1.5-flash",
         system_instruction="You are a phishing email detection model. You are given the following email and asked to determine if it is a 'Phishing' or a 'Safe' email. Please only give a one word response. The email is as follows:",
     )
 
