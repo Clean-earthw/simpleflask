@@ -19,8 +19,8 @@ from dotenv import load_dotenv
 
 GENAI_SCOPE = ['https://www.googleapis.com/auth/generative-language.retriever']
 
-if os.path.exists('token.json'):
-        creds = Credentials.from_authorized_user_file('token.json', GENAI_SCOPE)
+#if os.path.exists('token.json'):
+        #creds = Credentials.from_authorized_user_file('token.json', GENAI_SCOPE)
 
 load_dotenv()
 GOOGLE_CLIENT_ID = os.environ.get('CLIENT_ID')
@@ -30,7 +30,7 @@ os.environ["GEMINI_API_KEY"] = "AIzaSyDP-WGwWX4SY2uLTaKAivWwuXzX0LqSui0"
 genai.configure(
     api_key=os.getenv("GEMINI_API_KEY"),
     transport="rest",
-    client_options=creds
+    #client_options=creds
     )
 
 app = Flask(__name__)
